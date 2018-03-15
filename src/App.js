@@ -21,6 +21,18 @@ class App extends Component {
      .then(response => response.json())
      .then(resultDrivers => {
        for (const vehicle of listOfvehicles) {
+         if (vehicle.type === "full_trailer") {
+            vehicle.value = 1;
+         }
+         if (vehicle.type === "rigid_truck") {
+            vehicle.value = 2;
+         }
+         if (vehicle.type === "box_van") {
+            vehicle.value = 3;
+         }
+         if (vehicle.type === "van") {
+           vehicle.value = 4;
+         }
          vehicle.drivers = []
          for (const driver of resultDrivers) {
            for (const vehicleOfDriver of driver.vehicles) {
@@ -30,6 +42,11 @@ class App extends Component {
            }
          }
        }
+       //order by size
+       function compare(a,b) {
+         return a.value - b.value
+       }
+       listOfvehicles.sort(compare)
        this.setState({
          listOfvehicles: listOfvehicles,
        });
@@ -38,6 +55,8 @@ class App extends Component {
 
 
    render() {
+
+
 
     return (
 
@@ -49,6 +68,7 @@ class App extends Component {
                 <li key={index} className="cointainer">
                   <p> { vehicle.id } </p>
                   <p> { vehicle.type } </p>
+                  <p> { `${vehicle.drivers.length} Drivers` } </p>
                   {
                     vehicle.drivers.map( (driverInfo, index) => {
                       return (
