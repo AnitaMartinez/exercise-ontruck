@@ -4,7 +4,7 @@ class App extends Component {
    constructor(props) {
      super(props);
      this.state = {
-       idVehicle: "",
+       listOfvehicles: [],
        listOfDrivers: [],
      }
    }
@@ -25,7 +25,7 @@ class App extends Component {
      .then(response => response.json())
      .then(result => {
        this.setState({
-         idVehicle: result[0].id,
+         listOfvehicles: result,
        })
      })
 
@@ -33,25 +33,38 @@ class App extends Component {
 
    render() {
 
-
-
     return (
 
-      <div>
+      <ul>
 
         {
-          this.state.listOfDrivers.map( (driver, index) => {
-            for (const vehicle of driver.vehicles) {
-              if (vehicle === this.state.idVehicle) {
-                return (
-                  <p key={index} > {driver.name} </p>
-                )
-              }
-            }
+          this.state.listOfvehicles.map( (vehicle, index) => {
+            return (
+              <li key={index} className="cointainer">
+                <p> { vehicle.id } </p>
+                <p> { vehicle.type } </p>
+
+                {
+                  this.state.listOfDrivers.map( (driver, index) => {
+                    for (const vehicleOfDriver of driver.vehicles) {
+                      if (vehicleOfDriver === vehicle.id) {
+                        return (
+                          <div key={index} >
+                            <p> { driver.name } </p>
+                            <p> { driver.email } </p>
+                          </div>
+                        )
+                      }
+                    }
+                  })
+                }
+
+              </li>
+            )
           })
         }
 
-      </div>
+      </ul>
 
 
 
