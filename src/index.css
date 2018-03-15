@@ -1,6 +1,16 @@
+.cointainer {
+  border: solid 1px black; }
+
 body {
   margin: 0;
   box-sizing: border-box; }
 
-.cointainer {
-  border: solid 1px black; }
+a {
+  text-decoration: none; }
+
+ul {
+  list-style: none;
+  padding-left: 0; }
+
+li {
+  list-style-type: none; }
