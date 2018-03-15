@@ -10,18 +10,17 @@ class App extends Component {
 
    componentDidMount() {
 
+     let listOfvehicles;
+
      fetch("http://localhost:3000/vehicles")
      .then(response => response.json())
      .then(resultVehicles => {
-       this.setState({
-         listOfvehicles: resultVehicles,
-       });
+       listOfvehicles = resultVehicles;
        return fetch("http://localhost:3000/drivers");
      })
      .then(response => response.json())
      .then(resultDrivers => {
-
-       for (const vehicle of this.state.listOfvehicles) {
+       for (const vehicle of listOfvehicles) {
          vehicle.drivers = []
          for (const driver of resultDrivers) {
            for (const vehicleOfDriver of driver.vehicles) {
@@ -31,11 +30,9 @@ class App extends Component {
            }
          }
        }
-
        this.setState({
-         listOfvehicles: this.state.listOfvehicles,
+         listOfvehicles: listOfvehicles,
        });
-
      })
    }
 
@@ -44,43 +41,31 @@ class App extends Component {
 
     return (
 
-      <div>
-
-
-
         <ul>
 
-          {/* {
+          {
             this.state.listOfvehicles.map( (vehicle, index) => {
               return (
                 <li key={index} className="cointainer">
                   <p> { vehicle.id } </p>
                   <p> { vehicle.type } </p>
-
                   {
-                    this.state.listOfDrivers.map( (driver, index) => {
-                      for (const vehicleOfDriver of driver.vehicles) {
-                        if (vehicleOfDriver === vehicle.id) {
-                          return (
-                            <div key={index} >
-                              <p> { driver.name } </p>
-                              <p> { driver.email } </p>
-                            </div>
-                          )
-                        }
-                      }
+                    vehicle.drivers.map( (driverInfo, index) => {
+                      return (
+                        <div key={index}>
+                          <p> { driverInfo.name } </p>
+                          <p> { driverInfo.email } </p>
+                        </div>
+                      )
                     })
                   }
-
                 </li>
               )
             })
-          } */}
+          }
 
         </ul>
 
-
-      </div>
     );
   }
 }
