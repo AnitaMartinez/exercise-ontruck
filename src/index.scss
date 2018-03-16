@@ -3,4 +3,13 @@
   border: solid 1px black;
 }
 
+@import "styles/core/variables";
 @import "styles/core/generals";
+@import "styles/core/helpers";
+
+@import "styles/components/typography";
+@import "styles/components/buttons";
+
+@import "styles/layout/header";
+@import "styles/layout/main";
+@import "styles/layout/grid";

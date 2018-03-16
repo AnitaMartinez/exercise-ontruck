@@ -14,3 +14,28 @@ ul {
 
 li {
   list-style-type: none; }
+
+.hidden {
+  display: none; }
+
+.m-none {
+  margin: 0; }
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #383e42;
+  background-color: #f0f2f6; }
+
+.tittle-header {
+  font-size: 38px; }
+
+.title-card {
+  font-weight: 700;
+  font-size: 13px; }
+
+.contact-card-font {
+  font-size: 10px;
+  color: #c7cfd3; }

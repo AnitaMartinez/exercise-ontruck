@@ -10,10 +10,11 @@ class App extends Component {
      super(props);
      this.state = {
        listOfvehicles: [],
+       valueInput: "",
      }
    }
 
-   componentDidMount() {
+   componentDidMount = () => {
 
      let listOfvehicles;
 
@@ -58,46 +59,70 @@ class App extends Component {
      })
    }
 
+   handleInput = event => {
+      this.setState({valueInput: event.target.value});
+   }
+
 
    render() {
+
+     // let result;
+     // for (const vehicle of this.state.listOfvehicles) {
+     //   result = vehicle.drivers.filter( (vehicle) => {
+     //     return vehicle.name.toLowerCase().includes(this.state.valueInput.toLowerCase());
+     //   })
+     // }
+
 
     return (
 
       <div>
 
-        <ul>
+        <header>
+          <h1 className="tittle-header m-none">Vehicles</h1>
+        </header>
 
-          {
-            this.state.listOfvehicles.map( (vehicle, index) => {
-              return (
-                <li key={index} className="cointainer">
-                  <p> { vehicle.id } </p>
-                  <p> {(() => {
-                    switch (vehicle.type) {
-                      case "full_trailer": return <FullTrailer/>;
-                      case "rigid_truck": return <RigidTruck/>;
-                      case "box_van": return <BoxVan/>;
-                      case "van": return <Van/>;
+        <main>
+
+          <input onChange={ this.handleInput } type="text" className="" value={ this.state.valueInput } placeholder=" Search ..."/>
+
+          <ul>
+            {
+              this.state.listOfvehicles.map( (vehicle, index) => {
+
+                return (
+                  <li key={index} className="cointainer">
+                    <p> {(() => {
+                      switch (vehicle.type) {
+                        case "full_trailer": return <FullTrailer/>;
+                        case "rigid_truck": return <RigidTruck/>;
+                        case "box_van": return <BoxVan/>;
+                        case "van": return <Van/>;
+                        default: ;
+                      }
+                      })()}
+                    </p>
+                    <p className="title-card"> { `${vehicle.drivers.length} Drivers` } </p>
+                    {
+                      vehicle.drivers.map( (driverInfo, index) => {
+                        return (
+                          <div key={index}>
+                            <p> { driverInfo.name } </p>
+                            <p className="contact-card-font"> { driverInfo.email } </p>
+                          </div>
+                        )
+                      })
                     }
-                    })()}
-                  </p>
-                  <p> { `${vehicle.drivers.length} Drivers` } </p>
-                  {
-                    vehicle.drivers.map( (driverInfo, index) => {
-                      return (
-                        <div key={index}>
-                          <p> { driverInfo.name } </p>
-                          <p> { driverInfo.email } </p>
-                        </div>
-                      )
-                    })
-                  }
-                </li>
-              )
-            })
-          }
+                  </li>
+                )
+              })
+            }
+          </ul>
 
-        </ul>
+        </main>
+
+
+
       </div>
     );
   }
