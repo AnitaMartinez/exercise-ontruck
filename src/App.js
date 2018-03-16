@@ -3,6 +3,7 @@ import FullTrailer from "./icons/FullTrailer";
 import RigidTruck from "./icons/RigidTruck";
 import BoxVan from "./icons/BoxVan";
 import Van from "./icons/Van";
+import Search from "./icons/Search";
 
 
 class App extends Component {
@@ -73,18 +74,23 @@ class App extends Component {
      //   })
      // }
 
-
     return (
 
-      <div>
+      <div className="p-left-lg">
 
-        <header>
+
+
+        <header className="header">
           <h1 className="tittle-header m-none">Vehicles</h1>
         </header>
 
         <main>
 
-          <input onChange={ this.handleInput } type="text" className="" value={ this.state.valueInput } placeholder=" Search ..."/>
+          <div className="relative p-bottom-md">
+            <label className="hidden" htmlFor="inputByNameEmail">Busca por email o teléfono</label>
+            <input className="main-input" onChange={ this.handleInput } type="text" value={ this.state.valueInput } placeholder="Search ..." id="inputByNameEmail"/>
+            <Search/>
+          </div>
 
           <ul>
             {
@@ -118,7 +124,6 @@ class App extends Component {
               })
             }
           </ul>
-
         </main>
 
 
