@@ -1,4 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import FullTrailer from "./icons/FullTrailer";
+import RigidTruck from "./icons/RigidTruck";
+import BoxVan from "./icons/BoxVan";
+import Van from "./icons/Van";
+
 
 class App extends Component {
    constructor(props) {
@@ -56,11 +61,15 @@ class App extends Component {
 
    render() {
 
-
-
     return (
 
+      <div>
+
         <ul>
+          <FullTrailer/>
+          <RigidTruck/>
+          <BoxVan/>
+          <Van/>
 
           {
             this.state.listOfvehicles.map( (vehicle, index) => {
@@ -85,7 +94,7 @@ class App extends Component {
           }
 
         </ul>
-
+      </div>
     );
   }
 }
