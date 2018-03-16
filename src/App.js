@@ -66,17 +66,21 @@ class App extends Component {
       <div>
 
         <ul>
-          <FullTrailer/>
-          <RigidTruck/>
-          <BoxVan/>
-          <Van/>
 
           {
             this.state.listOfvehicles.map( (vehicle, index) => {
               return (
                 <li key={index} className="cointainer">
                   <p> { vehicle.id } </p>
-                  <p> { vehicle.type } </p>
+                  <p> {(() => {
+                    switch (vehicle.type) {
+                      case "full_trailer": return <FullTrailer/>;
+                      case "rigid_truck": return <RigidTruck/>;
+                      case "box_van": return <BoxVan/>;
+                      case "van": return <Van/>;
+                    }
+                    })()}
+                  </p>
                   <p> { `${vehicle.drivers.length} Drivers` } </p>
                   {
                     vehicle.drivers.map( (driverInfo, index) => {
