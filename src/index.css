@@ -73,6 +73,11 @@ body {
       padding-left: 50px;
       padding-right: 50px; } }
 
+.spinner {
+  margin: auto;
+  display: block;
+  margin-top: 40px; }
+
 .wrapper-grid {
   display: grid;
   grid-template-rows: auto;

@@ -6,6 +6,7 @@ class App extends Component {
      this.state = {
        listOfvehicles: [],
        valueInput: "",
+       loaded: false,
      }
    }
 
@@ -50,6 +51,7 @@ class App extends Component {
        listOfvehicles.sort(compare)
        this.setState({
          listOfvehicles: listOfvehicles,
+         loaded: true,
        });
      })
    }
@@ -67,7 +69,10 @@ class App extends Component {
      })
      function searchDriver(drivers, name){
        for(let driver of drivers){
-         if(driver.name.toLowerCase().includes(name.toLowerCase())){
+         if (driver.name.toLowerCase().includes(name.toLowerCase())) {
+           return true;
+         }
+         if (driver.email.toLowerCase().includes(name.toLowerCase())) {
            return true;
          }
        }
@@ -89,6 +94,8 @@ class App extends Component {
             <input className="main-input" onChange={ this.handleInput } type="text" value={ this.state.valueInput } placeholder="Search ..." id="inputByNameEmail"/>
             <img src="icons/search.svg" alt="Search" className="icon-search"/>
           </div>
+
+          { this.state.loaded ? null : <img className="spinner" src="icons/spinner.svg" alt="loading"/>  }
 
           <ul className="wrapper-grid">
             {
