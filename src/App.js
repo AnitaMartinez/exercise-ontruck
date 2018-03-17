@@ -67,18 +67,22 @@ class App extends Component {
 
    render() {
 
-     // let result;
-     // for (const vehicle of this.state.listOfvehicles) {
-     //   result = vehicle.drivers.filter( (vehicle) => {
-     //     return vehicle.name.toLowerCase().includes(this.state.valueInput.toLowerCase());
-     //   })
-     // }
+     //filter input
+     const vehiclesByInputValue = this.state.listOfvehicles.filter( vehicle => {
+       return searchDriver(vehicle.drivers, this.state.valueInput);
+     })
+     function searchDriver(drivers, name){
+       for(let driver of drivers){
+         if(driver.name.toLowerCase().includes(name.toLowerCase())){
+           return true;
+         }
+       }
+       return false;
+     }
 
     return (
 
       <div className="p-left-lg">
-
-
 
         <header className="header">
           <h1 className="tittle-header m-none">Vehicles</h1>
@@ -94,7 +98,7 @@ class App extends Component {
 
           <ul>
             {
-              this.state.listOfvehicles.map( (vehicle, index) => {
+              vehiclesByInputValue.map( (vehicle, index) => {
 
                 return (
                   <li key={index} className="cointainer">
@@ -125,7 +129,6 @@ class App extends Component {
             }
           </ul>
         </main>
-
 
 
       </div>
