@@ -1,10 +1,4 @@
 import React, { Component } from "react";
-import FullTrailer from "./icons/FullTrailer";
-import RigidTruck from "./icons/RigidTruck";
-import BoxVan from "./icons/BoxVan";
-import Van from "./icons/Van";
-import Search from "./icons/Search";
-
 
 class App extends Component {
    constructor(props) {
@@ -93,7 +87,7 @@ class App extends Component {
           <div className="relative p-bottom-md">
             <label className="hidden" htmlFor="inputByNameEmail">Busca por email o teléfono</label>
             <input className="main-input" onChange={ this.handleInput } type="text" value={ this.state.valueInput } placeholder="Search ..." id="inputByNameEmail"/>
-            <Search/>
+            <img src="icons/search.svg" alt="Search" className="icon-search"/>
           </div>
 
           <ul className="wrapper-grid">
@@ -101,18 +95,19 @@ class App extends Component {
               vehiclesByInputValue.map( (vehicle, index) => {
                 return (
                   <li key={index} className="card">
+
                     <div> {(() => {
                       switch (vehicle.type) {
-                        case "full_trailer": return <FullTrailer/>;
-                        case "rigid_truck": return <RigidTruck/>;
-                        case "box_van": return <BoxVan/>;
-                        case "van": return <Van/>;
+                        case "full_trailer": return <img src="icons/full-trailer.svg" alt="Full Trailer"/>;
+                        case "rigid_truck": return <img src="icons/rigid-truck.svg" alt="Rigid Truck"/>;
+                        case "box_van": return <img src="icons/box-van.svg" alt="Box Van"/>;
+                        case "van": return <img src="icons/van.svg" alt="Van"/>;
                         default: ;
                       }
                       })()}
                     </div>
                     <p className="title-card"> { `${vehicle.drivers.length} Drivers` } </p>
-                    <div>
+                    <div className="container-data-card">
                       {
                         vehicle.drivers.map( (driverInfo, index) => {
                           return (
@@ -124,6 +119,7 @@ class App extends Component {
                         })
                       }
                     </div>
+
                   </li>
                 )
               })

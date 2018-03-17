@@ -73,13 +73,6 @@ body {
       padding-left: 50px;
       padding-right: 50px; } }
 
-.card {
-  background-color: #ffffff;
-  padding-left: 20px;
-  padding-top: 30px;
-  border-radius: 10px;
-  box-shadow: 5px 5px 5px 0px #c7cfd3; }
-
 .wrapper-grid {
   display: grid;
   grid-template-rows: auto;
@@ -98,3 +91,15 @@ body {
   @media (min-width: 1650px) {
     .wrapper-grid {
       grid-template-columns: 1fr 1fr 1fr 1fr 1fr; } }
+
+.card {
+  background-color: #ffffff;
+  padding-left: 20px;
+  padding-top: 30px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px 0px #c7cfd3;
+  height: 300px; }
+
+.container-data-card {
+  height: 195px;
+  overflow: auto; }
