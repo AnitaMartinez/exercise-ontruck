@@ -24,15 +24,15 @@ button:focus, input:focus {
 .m-none {
   margin: 0; }
 
-.p-left-lg {
-  padding-left: 45px; }
+.m-bottom-none {
+  margin-bottom: 0; }
 
 .p-bottom-md {
   padding-bottom: 30px; }
 
 body {
   font-family: "Roboto", sans-serif;
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1.5;
   font-weight: 400;
   color: #383e42;
@@ -42,8 +42,7 @@ body {
   font-size: 38px; }
 
 .title-card {
-  font-weight: 700;
-  font-size: 13px; }
+  font-weight: 700; }
 
 .contact-card-font {
   font-size: 10px;
@@ -66,5 +65,36 @@ body {
   padding-top: 45px;
   padding-bottom: 30px; }
 
-.cointainer {
-  border: solid 1px black; }
+.container {
+  padding-left: 40px;
+  padding-right: 40px; }
+  @media (min-width: 800px) {
+    .container {
+      padding-left: 50px;
+      padding-right: 50px; } }
+
+.card {
+  background-color: #ffffff;
+  padding-left: 20px;
+  padding-top: 30px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px 0px #c7cfd3; }
+
+.wrapper-grid {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: 100%;
+  grid-row-gap: 20px; }
+  @media (min-width: 520px) {
+    .wrapper-grid {
+      grid-template-columns: 1fr 1fr;
+      grid-column-gap: 20px; } }
+  @media (min-width: 700px) {
+    .wrapper-grid {
+      grid-template-columns: 1fr 1fr 1fr; } }
+  @media (min-width: 1100px) {
+    .wrapper-grid {
+      grid-template-columns: 1fr 1fr 1fr 1fr; } }
+  @media (min-width: 1650px) {
+    .wrapper-grid {
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr; } }

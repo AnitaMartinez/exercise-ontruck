@@ -82,7 +82,7 @@ class App extends Component {
 
     return (
 
-      <div className="p-left-lg">
+      <div className="container">
 
         <header className="header">
           <h1 className="tittle-header m-none">Vehicles</h1>
@@ -96,13 +96,12 @@ class App extends Component {
             <Search/>
           </div>
 
-          <ul>
+          <ul className="wrapper-grid">
             {
               vehiclesByInputValue.map( (vehicle, index) => {
-
                 return (
-                  <li key={index} className="cointainer">
-                    <p> {(() => {
+                  <li key={index} className="card">
+                    <div> {(() => {
                       switch (vehicle.type) {
                         case "full_trailer": return <FullTrailer/>;
                         case "rigid_truck": return <RigidTruck/>;
@@ -111,18 +110,20 @@ class App extends Component {
                         default: ;
                       }
                       })()}
-                    </p>
+                    </div>
                     <p className="title-card"> { `${vehicle.drivers.length} Drivers` } </p>
-                    {
-                      vehicle.drivers.map( (driverInfo, index) => {
-                        return (
-                          <div key={index}>
-                            <p> { driverInfo.name } </p>
-                            <p className="contact-card-font"> { driverInfo.email } </p>
-                          </div>
-                        )
-                      })
-                    }
+                    <div>
+                      {
+                        vehicle.drivers.map( (driverInfo, index) => {
+                          return (
+                            <div key={index}>
+                              <p className="m-bottom-none"> { driverInfo.name } </p>
+                              <p className="contact-card-font m-none"> { driverInfo.email } </p>
+                            </div>
+                          )
+                        })
+                      }
+                    </div>
                   </li>
                 )
               })
