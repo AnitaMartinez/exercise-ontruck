@@ -68,26 +68,23 @@ class App extends Component {
     return (
 
       <div className="container">
-
         <header className="header">
           <h1 className="tittle-header m-none">Vehicles</h1>
         </header>
-
         <main>
 
           <Input
-            state= {this.state}
+            valueInput= {this.state.valueInput}
             handleInput = {this.handleInput}
           />
 
-          { this.state.loaded ? null : <img className="spinner" src="icons/spinner.svg" alt="loading"/>  }
+          { this.state.loaded ? null : <img className="spinner" src="icons/spinner.svg" alt="loading"/> }
 
           <Cards
             state= {this.state}
           />
 
         </main>
-
       </div>
     );
   }
