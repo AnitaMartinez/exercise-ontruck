@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import Input from './components/Input';
+import Cards from './components/Cards';
 
 class App extends Component {
    constructor(props) {
@@ -63,22 +65,6 @@ class App extends Component {
 
    render() {
 
-     //filter input
-     const vehiclesByInputValue = this.state.listOfvehicles.filter( vehicle => {
-       return searchDriver(vehicle.drivers, this.state.valueInput);
-     })
-     function searchDriver(drivers, name){
-       for(let driver of drivers){
-         if (driver.name.toLowerCase().includes(name.toLowerCase())) {
-           return true;
-         }
-         if (driver.email.toLowerCase().includes(name.toLowerCase())) {
-           return true;
-         }
-       }
-       return false;
-     }
-
     return (
 
       <div className="container">
@@ -89,51 +75,18 @@ class App extends Component {
 
         <main>
 
-          <div className="relative p-bottom-md">
-            <label className="hidden" htmlFor="inputByNameEmail">Busca por email o teléfono</label>
-            <input className="main-input" onChange={ this.handleInput } type="text" value={ this.state.valueInput } placeholder="Search ..." id="inputByNameEmail"/>
-            <img src="icons/search.svg" alt="Search" className="icon-search"/>
-          </div>
+          <Input
+            state= {this.state}
+            handleInput = {this.handleInput}
+          />
 
           { this.state.loaded ? null : <img className="spinner" src="icons/spinner.svg" alt="loading"/>  }
 
-          <ul className="wrapper-grid">
-            {
-              vehiclesByInputValue.map( (vehicle, index) => {
-                return (
-                  <li key={index} className="card">
+          <Cards
+            state= {this.state}
+          />
 
-                    <div> {(() => {
-                      switch (vehicle.type) {
-                        case "full_trailer": return <img src="icons/full-trailer.svg" alt="Full Trailer"/>;
-                        case "rigid_truck": return <img src="icons/rigid-truck.svg" alt="Rigid Truck"/>;
-                        case "box_van": return <img src="icons/box-van.svg" alt="Box Van"/>;
-                        case "van": return <img src="icons/van.svg" alt="Van"/>;
-                        default: ;
-                      }
-                      })()}
-                    </div>
-                    <p className="title-card"> { `${vehicle.drivers.length} Drivers` } </p>
-                    <div className="container-data-card">
-                      {
-                        vehicle.drivers.map( (driverInfo, index) => {
-                          return (
-                            <div key={index}>
-                              <p className="m-bottom-none"> { driverInfo.name } </p>
-                              <p className="contact-card-font m-none"> { driverInfo.email } </p>
-                            </div>
-                          )
-                        })
-                      }
-                    </div>
-
-                  </li>
-                )
-              })
-            }
-          </ul>
         </main>
-
 
       </div>
     );
