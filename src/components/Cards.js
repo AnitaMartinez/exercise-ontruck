@@ -29,17 +29,28 @@ class Cards extends Component {
               return (
                 <li key={index} className="card">
 
-                  <div> {(() => {
-                    switch (vehicle.type) {
-                      case "full_trailer": return <img src="icons/full-trailer.svg" alt="Full Trailer"/>;
-                      case "rigid_truck": return <img src="icons/rigid-truck.svg" alt="Rigid Truck"/>;
-                      case "box_van": return <img src="icons/box-van.svg" alt="Box Van"/>;
-                      case "van": return <img src="icons/van.svg" alt="Van"/>;
-                      default: ;
+                  <div>
+                    {(() => {
+                      switch (vehicle.type) {
+                        case "full_trailer": return <img src="icons/full-trailer.svg" alt="Full Trailer"/>;
+                        case "rigid_truck": return <img src="icons/rigid-truck.svg" alt="Rigid Truck"/>;
+                        case "box_van": return <img src="icons/box-van.svg" alt="Box Van"/>;
+                        case "van": return <img src="icons/van.svg" alt="Van"/>;
+                        default: ;
+                      }
+                    })()}
+                  </div>
+
+                <p className="title-card">
+                  {(() => {
+                    switch (vehicle.drivers.length) {
+                      case 0: return "No Drivers";
+                      case 1: return "1 Driver";
+                      default: return vehicle.drivers.length + " Drivers";
                     }
                   })()}
-                </div>
-                <p className="title-card"> { `${vehicle.drivers.length} Drivers` } </p>
+                </p>
+
                 <div className="container-data-card">
                   {
                     vehicle.drivers.map( (driverInfo, index) => {
@@ -52,6 +63,7 @@ class Cards extends Component {
                     })
                   }
                 </div>
+
               </li>
             )
           })
