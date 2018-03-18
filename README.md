@@ -5,7 +5,7 @@
 Local API:
 ```
 npm install
-npm run mocks (local API)
+npm run mocks 
 ```
 
 Project:
