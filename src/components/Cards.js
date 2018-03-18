@@ -30,7 +30,7 @@ class Cards extends Component {
             return (
               <li key={index} className="card">
 
-                <div>
+                <div className="center">
                   {(() => {
                     switch (vehicle.type) {
                       case "full_trailer": return <img src="icons/full-trailer.svg" alt="Full Trailer"/>;
