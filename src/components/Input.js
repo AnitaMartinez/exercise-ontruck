@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 const Input = ({ handleInput, valueInput }) => (
 
   <div className="relative p-bottom-md">
-    <label className="hidden" htmlFor="inputByNameEmail">Busca por email o teléfono</label>
+    <label className="hidden" htmlFor="inputByNameEmail">Search by email or phone number</label>
     <input className="main-input" onChange={ handleInput } type="text" value={ valueInput } placeholder="Search ..." id="inputByNameEmail"/>
     <img src="icons/search.svg" alt="Search" className="icon-search"/>
   </div>
